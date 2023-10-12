@@ -26,12 +26,29 @@ ffmpeg -i video.mp4 images/image_%04d.jpg
 cargo run --release
 ```
 
-`Notes:`  
+`Note_1:`  
 You should edit `src/main.rs` to change the first line in `main`:  
 
 ```rust
 // Change the default `true` to `false` to avoid regenerating a lot of txt files in lots of compile time
 txt::generate_txt(true, 360, 280);
+```
+
+`Note_2:`  
+Please note that if you want the best visual experience, you should set your terminal's `line-height` && `cell_width`:
+
+`Wezterm (A configurable terminal)` Example:
+
+```lua
+-- ~/.config/wezterm/wezterm.lua
+local config = {}
+
+-- Make the cell looks more like a square rather than a rectangle
+-- height:width = 1:2
+config.line_height = 1;  
+config.cell_width = 2;
+
+return config
 ```
 
 ## Shortcuts
