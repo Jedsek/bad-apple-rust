@@ -1,4 +1,5 @@
 use const_format::formatcp;
+use crossterm::{cursor::Hide, execute};
 use image::{imageops::FilterType, io::Reader as ImageReader};
 use rayon::prelude::*;
 use std::{fs, path::Path};
@@ -16,6 +17,8 @@ pub fn generate_txt(force_rebuild: bool, width: u32, height: u32) {
 
     fs::create_dir_all(TXT_DIR).ok();
 
+    execute!(std::io::stdout(), Hide).ok();
+
     pool.install(|| {
         fs::read_dir(IMAGE_DIR)
             .unwrap()
@@ -25,7 +28,12 @@ pub fn generate_txt(force_rebuild: bool, width: u32, height: u32) {
                 let txt_path = Path::new(image_path.file_name().unwrap()).with_extension("txt");
                 let txt_path = Path::new(TXT_DIR).join(txt_path.with_extension("txt"));
 
-                // print!("{} ", image_path.display());
+                print!(
+                    "Generating txts (width: {}, height: {}), which path is: {}\r",
+                    width,
+                    height,
+                    image_path.display()
+                );
 
                 if txt_path.exists() && !force_rebuild {
                     return;

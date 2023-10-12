@@ -70,11 +70,6 @@ impl App {
         }
 
         // self.idx = self.idx.clamp(0, self.txts.len() - 1);
-        if self.idx >= self.txts.len() {
-            self.idx = self.txts.len();
-            self.state = State::Stopping;
-            execute!(std::io::stdout(), Clear(ClearType::All)).ok();
-        }
         if self.idx < self.txts.len() {
             self.idx += 1;
         } else {
