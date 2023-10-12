@@ -1,0 +1,17 @@
+[package]
+name = "bad-apple-rust"
+version = "0.1.0"
+authors = ["jedsek <jedsek@qq.com>"]
+license = "MIT"
+edition = "2021"
+
+[profile.release]
+opt-level = 3
+strip = true
+
+[dependencies]
+const_format = "0.2.31"
+crossterm = "*"
+image = "0.24.7"
+rayon = "1.8.0"
+tui = { package = "ratatui", version = "0.23.0" }
