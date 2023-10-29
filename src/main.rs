@@ -10,7 +10,7 @@ use tui::Terminal;
 
 fn main() -> AppResult<()> {
     // Generate txt files from images.
-    txt::generate_txt(true, 360, 280);
+    txt::generate_txt(false, 360, 280);
 
     // Create an application.
     let mut app = App::new("txts");
